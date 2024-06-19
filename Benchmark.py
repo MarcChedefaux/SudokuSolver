@@ -1,6 +1,7 @@
 from Solvers.ISolver import ISolver
 from Solvers.BasicBacktracker import BasicBacktracker
 from Solvers.OrderedBacktracker import OrderedBacktracker
+from Solvers.CachedBacktracker import CachedBacktracker
 from Grid import Grid
 from tqdm import tqdm
 import pandas as pd
@@ -10,7 +11,7 @@ import time
 if __name__ == "__main__":
     df = pd.read_csv("data/sudoku-3m.csv")
 
-    solver = OrderedBacktracker()
+    solver = CachedBacktracker()
     solver.Init()
 
     times = []
@@ -33,4 +34,4 @@ if __name__ == "__main__":
 
     times = np.array(times)
     times = pd.DataFrame(times, columns=["times"])
-    times.to_csv("output_benchmark/ordered_backtracker.csv")
+    times.to_csv("output_benchmark/cached_backtracker.csv")
